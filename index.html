@@ -7,65 +7,79 @@
     <title>Tabela de Pedidos</title>
 </head>
 <body class="flex justify-center min-h-screen bg-gray-100">
-    <div class="w-full mr-4 ml-4 p-4 bg-white shadow-md rounded-lg">
-        <!-- Direção do fluxo de pedidos -->
-        <div class="flex justify-center items-center mb-4 text-xl">
-            <span class="text-black font-semibold">Aguardando Sep.</span>
-            <span class="mx-2 text-gray-500">➡</span>
-            <span class="text-black font-semibold">Em Separação</span>
-            <span class="mx-2 text-gray-500">➡</span>
-            <span class="text-black font-semibold">Cubagem</span>
-            <span class="mx-2 text-gray-500">➡</span>
-            <span class="text-black font-semibold">Faturamento</span>
-            <span class="mx-2 text-gray-500">➡</span>
-            <span class="text-black font-semibold">Disp. p</span>
+    <div class="w-full p-6 bg-white shadow-lg rounded-lg">
+        <div class="flex justify-center items-center mb-6 text-3xl font-bold text-gray-800">
+            <span>Aguardando Sep.</span>
+            <span class="mx-4 text-gray-500">➡</span>
+            <span>Em Separação</span>
+            <span class="mx-4 text-gray-500">➡</span>
+            <span>Cubagem</span>
+            <span class="mx-4 text-gray-500">➡</span>
+            <span>Faturamento</span>
+            <span class="mx-4 text-gray-500">➡</span>
+            <span>Disponível</span>
         </div>
         
         <table class="w-full border-collapse">
             <thead>
                 <tr>
-                    <th class="p-3 border text-white bg-blue-500">Aguardando Sep.<br><span class="text-sm font-light">Total: 5</span></th>
-                    <th class="p-3 border text-white bg-green-500">Em Separação<br><span class="text-sm font-light">Total: 5</span></th>
-                    <th class="p-3 border text-white bg-yellow-500">Cubagem<br><span class="text-sm font-light">Total: 5</span></th>
-                    <th class="p-3 border text-white bg-red-500">Faturamento<br><span class="text-sm font-light">Total: 5</span></th>
-                    <th class="p-3 border text-white bg-purple-500">Disp. p<br><span class="text-sm font-light">Total: 5</span></th>
+                    <th class="p-6 border text-white bg-blue-500 text-4xl font-bold">
+                        Aguardando Sep.<br>
+                        <span class="text-2xl font-semibold">Total: 5</span>
+                    </th>
+                    <th class="p-6 border text-white bg-green-500 text-4xl font-bold">
+                        Em Separação<br>
+                        <span class="text-2xl font-semibold">Total: 5</span>
+                    </th>
+                    <th class="p-6 border text-white bg-yellow-500 text-4xl font-bold">
+                        Cubagem<br>
+                        <span class="text-2xl font-semibold">Total: 5</span>
+                    </th>
+                    <th class="p-6 border text-white bg-red-500 text-4xl font-bold">
+                        Faturamento<br>
+                        <span class="text-2xl font-semibold">Total: 5</span>
+                    </th>
+                    <th class="p-6 border text-white bg-purple-500 text-4xl font-bold">
+                        Disponível<br>
+                        <span class="text-2xl font-semibold">Total: 5</span>
+                    </th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="text-center bg-gray-50">
-                    <td class="p-3 border">OV-101 - TOTAL FIT</td>
-                    <td class="p-3 border">OV-102 - SELF IT</td>
-                    <td class="p-3 border">OV-103 - SMARTFIT</td>
-                    <td class="p-3 border">OV-104 - SESC</td>
-                    <td class="p-3 border">OV-105 - PANOBIANCO</td>
+                <tr class="text-center bg-gray-200 text-2xl font-semibold">
+                    <td class="p-4 border">OV-101 - TOTAL FIT</td>
+                    <td class="p-4 border">OV-102 - SELF IT</td>
+                    <td class="p-4 border">OV-103 - SMARTFIT</td>
+                    <td class="p-4 border">OV-104 - SESC</td>
+                    <td class="p-4 border">OV-105 - PANOBIANCO</td>
                 </tr>
-                <tr class="text-center bg-white">
-                    <td class="p-3 border">OV-106 - BODYTECH</td>
-                    <td class="p-3 border">OV-107 - BLUEFIT</td>
-                    <td class="p-3 border">OV-108 - ACADEMIA CONCEPT</td>
-                    <td class="p-3 border">OV-109 - JUST FIT</td>
-                    <td class="p-3 border">OV-110 - PERSONAL FIT</td>
+                <tr class="text-center bg-gray-50 text-2xl font-semibold">
+                    <td class="p-4 border">OV-106 - BODYTECH</td>
+                    <td class="p-4 border">OV-107 - BLUEFIT</td>
+                    <td class="p-4 border">OV-108 - ACADEMIA CONCEPT</td>
+                    <td class="p-4 border">OV-109 - JUST FIT</td>
+                    <td class="p-4 border">OV-110 - PERSONAL FIT</td>
                 </tr>
-                <tr class="text-center bg-gray-50">
-                    <td class="p-3 border">OV-111 - LIFE FITNESS</td>
-                    <td class="p-3 border">OV-112 - EVOLVE</td>
-                    <td class="p-3 border">OV-113 - ENERGY</td>
-                    <td class="p-3 border">OV-114 - BIO RITMO</td>
-                    <td class="p-3 border">OV-115 - ACADEMIA X</td>
+                <tr class="text-center bg-gray-200 text-2xl font-semibold">
+                    <td class="p-4 border">OV-111 - LIFE FITNESS</td>
+                    <td class="p-4 border">OV-112 - EVOLVE</td>
+                    <td class="p-4 border">OV-113 - ENERGY</td>
+                    <td class="p-4 border">OV-114 - BIO RITMO</td>
+                    <td class="p-4 border">OV-115 - ACADEMIA X</td>
                 </tr>
-                <tr class="text-center bg-white">
-                    <td class="p-3 border">OV-116 - FITNESS GYM</td>
-                    <td class="p-3 border">OV-117 - TOP FIT</td>
-                    <td class="p-3 border">OV-118 - WELLNESS CLUB</td>
-                    <td class="p-3 border">OV-119 - VIVAFIT</td>
-                    <td class="p-3 border">OV-120 - HIGH PERFORMANCE</td>
+                <tr class="text-center bg-gray-50 text-2xl font-semibold">
+                    <td class="p-4 border">OV-116 - FITNESS GYM</td>
+                    <td class="p-4 border">OV-117 - TOP FIT</td>
+                    <td class="p-4 border">OV-118 - WELLNESS CLUB</td>
+                    <td class="p-4 border">OV-119 - VIVAFIT</td>
+                    <td class="p-4 border">OV-120 - HIGH PERFORMANCE</td>
                 </tr>
-                <tr class="text-center bg-gray-50">
-                    <td class="p-3 border">OV-121 - GYM MASTER</td>
-                    <td class="p-3 border">OV-122 - IRON FITNESS</td>
-                    <td class="p-3 border">OV-123 - STRONG GYM</td>
-                    <td class="p-3 border">OV-124 - POWER HOUSE</td>
-                    <td class="p-3 border">OV-125 - XTREME FITNESS</td>
+                <tr class="text-center bg-gray-200 text-2xl font-semibold">
+                    <td class="p-4 border">OV-121 - GYM MASTER</td>
+                    <td class="p-4 border">OV-122 - IRON FITNESS</td>
+                    <td class="p-4 border">OV-123 - STRONG GYM</td>
+                    <td class="p-4 border">OV-124 - POWER HOUSE</td>
+                    <td class="p-4 border">OV-125 - XTREME FITNESS</td>
                 </tr>
             </tbody>
         </table>
