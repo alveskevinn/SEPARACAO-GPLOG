@@ -1,128 +1,205 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Tabela de Pedidos</title>
     <style>
-        .fixed-bottom-left {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-size: 1.5rem;
-        }
-        .status-tag {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-size: 1.2rem;
-        }
-        th, td {
-            width: 200px;
-            word-wrap: break-word;
-            text-overflow: ellipsis;
-            overflow: hidden;
-        }
+      .fixed-bottom-left {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 1.5rem;
+      }
+      .status-tag {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 1.2rem;
+      }
+      th,
+      td {
+        width: 200px;
+        word-wrap: break-word;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
     </style>
-</head>
-<body class="flex justify-center min-h-screen bg-gray-100">
-    <div class="w-full p-6 bg-white shadow-lg rounded-lg">
-        <div class="flex justify-center items-center mb-6 text-3xl font-bold text-gray-800">
-            <span>Aguardando Separação</span>
-            <span class="mx-4 text-gray-500">➡</span>
-            <span>Em Separação</span>
-            <span class="mx-4 text-gray-500">➡</span>
-            <span>Cubagem</span>
-            <span class="mx-4 text-gray-500">➡</span>
-            <span>Faturamento</span>
-            <span class="mx-4 text-gray-500">➡</span>
-            <span>Disponível p/ coleta</span>
-        </div>
-        
-        <table class="w-full border-collapse">
-            <thead>
-                <tr>
-                    <th class="p-6 border text-white bg-blue-500 text-4xl font-bold">Aguardando Separação<br><span class="text-2xl font-semibold">Total: 6</span></th>
-                    <th class="p-6 border text-white bg-yellow-500 text-4xl font-bold">Em Separação<br><span class="text-2xl font-semibold">Total: 6</span></th>
-                    <th class="p-6 border text-white bg-orange-500 text-4xl font-bold">Cubagem<br><span class="text-2xl font-semibold">Total: 6</span></th>
-                    <th class="p-6 border text-white bg-red-500 text-4xl font-bold">Faturamento<br><span class="text-2xl font-semibold">Total: 6</span></th>
-                    <th class="p-6 border text-white bg-green-500 text-4xl font-bold">Disponível p/ coleta<br><span class="text-2xl font-semibold">Total: 6</span></th>
-                </tr>
-            </thead>
-            <tbody id="table-body" class="text-center text-2xl font-semibold"></tbody>
-        </table>
+  </head>
+  <body class="flex justify-center min-h-screen bg-gray-100">
+    <div class="w-full bg-white shadow-lg rounded-lg">
+      <div class="flex justify-between items-center mb-6 ml-12 mt-6 mr-12">
+        <img
+          src="https://gplogexpress.com.br/wp-content/uploads/2023/05/LOGO-GP-LOG-EXPRESS-PNG_Prancheta-1-2.webp"
+          alt="Logo"
+          class="w-34 h-12"
+        />
+        <img
+          src="https://johnsonfitness.com.br/wp-content/uploads/2021/01/logo.png"
+          alt="Logo"
+          class="w-34 h-12"
+        />
+      </div>
 
-        <div class="mt-4 flex justify-center">
-            <span id="current-page" class="px-4 py-2 text-xl font-semibold">Página 1</span>
-        </div>
+      <div
+        class="flex justify-center items-center mb-6 text-3xl font-bold text-gray-800"
+      >
+        <span>Aguardando Separação</span>
+        <span class="mx-4 text-gray-500">➡</span>
+        <span>Em Separação</span>
+        <span class="mx-4 text-gray-500">➡</span>
+        <span>Cubagem</span>
+        <span class="mx-4 text-gray-500">➡</span>
+        <span>Faturamento</span>
+        <span class="mx-4 text-gray-500">➡</span>
+        <span>Disponível p/ coleta</span>
+      </div>
+
+      <table class="w-full border-collapse">
+        <thead>
+          <tr>
+            <th class="p-6 border text-white bg-blue-600 text-4xl font-bold">
+              Aguardando Separação<br /><span class="text-2xl font-semibold"
+                >Total: 6</span
+              >
+            </th>
+            <th class="p-6 border text-white bg-blue-400  text-4xl font-bold">
+              Em Separação<br /><span class="text-2xl font-semibold"
+                >Total: 6</span
+              >
+            </th>
+            <th class="p-6 border text-white bg-orange-500 text-4xl font-bold">
+              Cubagem<br /><span class="text-2xl font-semibold">Total: 6</span>
+            </th>
+            <th class="p-6 border text-white bg-red-500 text-4xl font-bold">
+              Faturamento<br /><span class="text-2xl font-semibold"
+                >Total: 6</span
+              >
+            </th>
+            <th class="p-6 border text-white bg-green-500 text-4xl font-bold">
+              Disponível p/ coleta<br /><span class="text-2xl font-semibold"
+                >Total: 6</span
+              >
+            </th>
+          </tr>
+        </thead>
+        <tbody
+          id="table-body"
+          class="text-center text-2xl font-semibold"
+        ></tbody>
+      </table>
+
+      <div class="mt-4 flex justify-center">
+        <span id="current-page" class="px-4 py-2 text-xl font-semibold"
+          >Página 1</span
+        >
+      </div>
     </div>
-    
+
     <div class="fixed-bottom-left">Pendências: 5</div>
 
-    <div id="status-tag" class="status-tag">Conectado ao servidor | Hora: <span id="current-time"></span></div>
+    <div id="status-tag" class="status-tag">
+      Conectado ao servidor | Hora: <span id="current-time"></span>
+    </div>
 
     <script>
-        const mockData = [
-            ["OV-101 - TOTAL FIT", "OV-102 - SELF IT", "OV-103 - SMARTFIT", "OV-104 - SESC", "OV-105 - PANOBIANCO"],
-            ["OV-126 - FITNESS PRO", "OV-127 - SUPREME GYM", "OV-128 - ELITE FITNESS", "OV-129 - BODYBUILDING", "OV-130 - SMART GYM"],
-            ["OV-131 - MUSCLE PRO", "OV-132 - ACTIVE GYM", "OV-133 - MAX FITNESS", "OV-134 - POWERLIFT", "OV-135 - FULL BODY GYM"],
-            ["OV-136 - TRAINING ZONE", "OV-137 - VITALITY CLUB", "OV-138 - STRENGTH GYM", "OV-139 - FITZONE", "OV-140 - FLEX FITNESS"],
-            ["OV-141 - PERFECT FORM", "OV-142 - TOTAL STRENGTH", "OV-143 - PRIME GYM", "OV-144 - MUSCLE EVOLUTION", "OV-145 - GYM EXPERT"],
-            ["OV-146 - NEXT LEVEL", "OV-147 - ELITE WORKOUT", "OV-148 - STRENGTH LAB", "OV-149 - FITNESS ZONE", "OV-150 - POWERHOUSE GYM"]
-        ];
-        
-        let currentIndex = 0;
-        const rowsPerPage = 5;
-        const totalPages = Math.ceil(mockData.length / rowsPerPage);
-        const tableBody = document.getElementById("table-body");
-        const currentPageElement = document.getElementById("current-page");
+      const mockData = [
+        [
+          "OV-101 - TOTAL FIT",
+          "OV-102 - SELF IT",
+          "OV-103 - SMARTFIT",
+          "OV-104 - SESC",
+          "OV-105 - PANOBIANCO",
+        ],
+        [
+          "OV-126 - FITNESS PRO",
+          "OV-127 - SUPREME GYM",
+          "OV-128 - ELITE FITNESS",
+          "OV-129 - BODYBUILDING",
+          "OV-130 - SMART GYM",
+        ],
+        [
+          "OV-131 - MUSCLE PRO",
+          "OV-132 - ACTIVE GYM",
+          "OV-133 - MAX FITNESS",
+          "OV-134 - POWERLIFT",
+          "OV-135 - FULL BODY GYM",
+        ],
+        [
+          "OV-136 - TRAINING ZONE",
+          "OV-137 - VITALITY CLUB",
+          "OV-138 - STRENGTH GYM",
+          "OV-139 - FITZONE",
+          "OV-140 - FLEX FITNESS",
+        ],
+        [
+          "OV-141 - PERFECT FORM",
+          "OV-142 - TOTAL STRENGTH",
+          "OV-143 - PRIME GYM",
+          "OV-144 - MUSCLE EVOLUTION",
+          "OV-145 - GYM EXPERT",
+        ],
+        [
+          "OV-146 - NEXT LEVEL",
+          "OV-147 - ELITE WORKOUT",
+          "OV-148 - STRENGTH LAB",
+          "OV-149 - FITNESS ZONE",
+          "OV-150 - POWERHOUSE GYM",
+        ],
+      ];
 
-        function updateTable() {
-            tableBody.innerHTML = "";
-            const startIndex = currentIndex * rowsPerPage;
-            const endIndex = Math.min(startIndex + rowsPerPage, mockData.length);
+      let currentIndex = 0;
+      const rowsPerPage = 5;
+      const totalPages = Math.ceil(mockData.length / rowsPerPage);
+      const tableBody = document.getElementById("table-body");
+      const currentPageElement = document.getElementById("current-page");
 
-            for (let i = startIndex; i < endIndex; i++) {
-                const row = document.createElement("tr");
-                row.className = i % 2 === 0 ? "bg-gray-200" : "bg-gray-50";
-                mockData[i].forEach(item => {
-                    const cell = document.createElement("td");
-                    cell.className = "p-4 border";
-                    cell.textContent = item;
-                    row.appendChild(cell);
-                });
-                tableBody.appendChild(row);
-            }
+      function updateTable() {
+        tableBody.innerHTML = "";
+        const startIndex = currentIndex * rowsPerPage;
+        const endIndex = Math.min(startIndex + rowsPerPage, mockData.length);
 
-            currentPageElement.textContent = `Página ${currentIndex + 1}`;
+        for (let i = startIndex; i < endIndex; i++) {
+          const row = document.createElement("tr");
+          row.className = i % 2 === 0 ? "bg-gray-200" : "bg-gray-50";
+          mockData[i].forEach((item) => {
+            const cell = document.createElement("td");
+            cell.className = "p-4 border";
+            cell.textContent = item;
+            row.appendChild(cell);
+          });
+          tableBody.appendChild(row);
         }
 
-        function nextPage() {
-            currentIndex = (currentIndex + 1) % totalPages;
-            updateTable();
-        }
+        currentPageElement.textContent = `Página ${currentIndex + 1}`;
+      }
 
-        function autoPagination() {
-            setInterval(nextPage, 4000);
-        }
-
-        function updateTime() {
-            const currentTime = new Date().toLocaleTimeString();
-            document.getElementById("current-time").textContent = currentTime;
-        }
-
+      function nextPage() {
+        currentIndex = (currentIndex + 1) % totalPages;
         updateTable();
-        autoPagination();
-        setInterval(updateTime, 1000);
+      }
+
+      function autoPagination() {
+        setInterval(nextPage, 4000);
+      }
+
+      function updateTime() {
+        const currentTime = new Date().toLocaleTimeString();
+        document.getElementById("current-time").textContent = currentTime;
+      }
+
+      updateTable();
+      autoPagination();
+      setInterval(updateTime, 1000);
     </script>
-</body>
+  </body>
 </html>
