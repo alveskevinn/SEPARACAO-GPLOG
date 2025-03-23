@@ -5,6 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Tabela de Pedidos</title>
+    <style>
+        .fixed-bottom-left {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1.5rem;
+        }
+        .status-tag {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+        }
+    </style>
 </head>
 <body class="flex justify-center min-h-screen bg-gray-100">
     <div class="w-full p-6 bg-white shadow-lg rounded-lg">
@@ -23,66 +45,63 @@
         <table class="w-full border-collapse">
             <thead>
                 <tr>
-                    <th class="p-6 border text-white bg-blue-500 text-4xl font-bold">
-                        Aguardando Sep.<br>
-                        <span class="text-2xl font-semibold">Total: 5</span>
-                    </th>
-                    <th class="p-6 border text-white bg-yellow-500 text-4xl font-bold">
-                        Em Separação<br>
-                        <span class="text-2xl font-semibold">Total: 5</span>
-                    </th>
-                    <th class="p-6 border text-white bg-orange-500 text-4xl font-bold">
-                        Cubagem<br>
-                        <span class="text-2xl font-semibold">Total: 5</span>
-                    </th>
-                    <th class="p-6 border text-white bg-red-500 text-4xl font-bold">
-                        Faturamento<br>
-                        <span class="text-2xl font-semibold">Total: 5</span>
-                    </th>
-                    <th class="p-6 border text-white bg-green-500 text-4xl font-bold">
-                        Disponível p/ coleta<br>
-                        <span class="text-2xl font-semibold">Total: 5</span>
-                    </th>
+                    <th class="p-6 border text-white bg-blue-500 text-4xl font-bold">Aguardando Sep.<br><span class="text-2xl font-semibold">Total: 5</span></th>
+                    <th class="p-6 border text-white bg-yellow-500 text-4xl font-bold">Em Separação<br><span class="text-2xl font-semibold">Total: 5</span></th>
+                    <th class="p-6 border text-white bg-orange-500 text-4xl font-bold">Cubagem<br><span class="text-2xl font-semibold">Total: 5</span></th>
+                    <th class="p-6 border text-white bg-red-500 text-4xl font-bold">Faturamento<br><span class="text-2xl font-semibold">Total: 5</span></th>
+                    <th class="p-6 border text-white bg-green-500 text-4xl font-bold">Disponível p/ coleta<br><span class="text-2xl font-semibold">Total: 5</span></th>
                 </tr>
             </thead>
-            <tbody>
-                <tr class="text-center bg-gray-200 text-2xl font-semibold">
-                    <td class="p-4 border">OV-101 - TOTAL FIT</td>
-                    <td class="p-4 border">OV-102 - SELF IT</td>
-                    <td class="p-4 border">OV-103 - SMARTFIT</td>
-                    <td class="p-4 border">OV-104 - SESC</td>
-                    <td class="p-4 border">OV-105 - PANOBIANCO</td>
-                </tr>
-                <tr class="text-center bg-gray-50 text-2xl font-semibold">
-                    <td class="p-4 border">OV-106 - BODYTECH</td>
-                    <td class="p-4 border">OV-107 - BLUEFIT</td>
-                    <td class="p-4 border">OV-108 - ACADEMIA CONCEPT</td>
-                    <td class="p-4 border">OV-109 - JUST FIT</td>
-                    <td class="p-4 border">OV-110 - PERSONAL FIT</td>
-                </tr>
-                <tr class="text-center bg-gray-200 text-2xl font-semibold">
-                    <td class="p-4 border">OV-111 - LIFE FITNESS</td>
-                    <td class="p-4 border">OV-112 - EVOLVE</td>
-                    <td class="p-4 border">OV-113 - ENERGY</td>
-                    <td class="p-4 border">OV-114 - BIO RITMO</td>
-                    <td class="p-4 border">OV-115 - ACADEMIA X</td>
-                </tr>
-                <tr class="text-center bg-gray-50 text-2xl font-semibold">
-                    <td class="p-4 border">OV-116 - FITNESS GYM</td>
-                    <td class="p-4 border">OV-117 - TOP FIT</td>
-                    <td class="p-4 border">OV-118 - WELLNESS CLUB</td>
-                    <td class="p-4 border">OV-119 - VIVAFIT</td>
-                    <td class="p-4 border">OV-120 - HIGH PERFORMANCE</td>
-                </tr>
-                <tr class="text-center bg-gray-200 text-2xl font-semibold">
-                    <td class="p-4 border">OV-121 - GYM MASTER</td>
-                    <td class="p-4 border">OV-122 - IRON FITNESS</td>
-                    <td class="p-4 border">OV-123 - STRONG GYM</td>
-                    <td class="p-4 border">OV-124 - POWER HOUSE</td>
-                    <td class="p-4 border">OV-125 - XTREME FITNESS</td>
-                </tr>
-            </tbody>
+            <tbody id="table-body" class="text-center text-2xl font-semibold"></tbody>
         </table>
     </div>
+    
+    <div class="fixed-bottom-left">Pendências: 5</div>
+
+    <div id="status-tag" class="status-tag">Conectado ao servidor | Hora: <span id="current-time"></span></div>
+
+    <script>
+        const mockData = [
+            ["OV-101 - TOTAL FIT", "OV-102 - SELF IT", "OV-103 - SMARTFIT", "OV-104 - SESC", "OV-105 - PANOBIANCO"],
+            ["OV-106 - BODYTECH", "OV-107 - BLUEFIT", "OV-108 - ACADEMIA CONCEPT", "OV-109 - JUST FIT", "OV-110 - PERSONAL FIT"],
+            ["OV-111 - LIFE FITNESS", "OV-112 - EVOLVE", "OV-113 - ENERGY", "OV-114 - BIO RITMO", "OV-115 - ACADEMIA X"],
+            ["OV-116 - FITNESS GYM", "OV-117 - TOP FIT", "OV-118 - WELLNESS CLUB", "OV-119 - VIVAFIT", "OV-120 - HIGH PERFORMANCE"],
+            ["OV-121 - GYM MASTER", "OV-122 - IRON FITNESS", "OV-123 - STRONG GYM", "OV-124 - POWER HOUSE", "OV-125 - XTREME FITNESS"],
+            ["OV-126 - FITNESS PRO", "OV-127 - SUPREME GYM", "OV-128 - ELITE FITNESS", "OV-129 - BODYBUILDING", "OV-130 - SMART GYM"],
+            ["OV-131 - MUSCLE PRO", "OV-132 - ACTIVE GYM", "OV-133 - MAX FITNESS", "OV-134 - POWERLIFT", "OV-135 - FULL BODY GYM"],
+            ["OV-136 - TRAINING ZONE", "OV-137 - VITALITY CLUB", "OV-138 - STRENGTH GYM", "OV-139 - FITZONE", "OV-140 - FLEX FITNESS"],
+            ["OV-141 - PERFECT FORM", "OV-142 - TOTAL STRENGTH", "OV-143 - PRIME GYM", "OV-144 - MUSCLE EVOLUTION", "OV-145 - GYM EXPERT"],
+            ["OV-146 - NEXT LEVEL", "OV-147 - ELITE WORKOUT", "OV-148 - STRENGTH LAB", "OV-149 - FITNESS ZONE", "OV-150 - POWERHOUSE GYM"]
+        ];
+        
+        let currentIndex = 0;
+        const tableBody = document.getElementById("table-body");
+        
+        function updateTable() {
+            tableBody.innerHTML = "";
+            for (let i = 0; i < 5; i++) {
+                const row = document.createElement("tr");
+                row.className = i % 2 === 0 ? "bg-gray-200" : "bg-gray-50";
+                mockData[currentIndex + i].forEach(item => {
+                    const cell = document.createElement("td");
+                    cell.className = "p-4 border";
+                    cell.textContent = item;
+                    row.appendChild(cell);
+                });
+                tableBody.appendChild(row);
+            }
+
+            currentIndex = (currentIndex + 5) % mockData.length;
+        }
+        
+        function updateTime() {
+            const currentTime = new Date().toLocaleTimeString();
+            document.getElementById("current-time").textContent = currentTime;
+        }
+
+        updateTable();
+        setInterval(updateTable, 3000);
+        setInterval(updateTime, 1000);
+    </script>
 </body>
 </html>
