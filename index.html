@@ -26,12 +26,18 @@
             border-radius: 8px;
             font-size: 1.2rem;
         }
+        th, td {
+            width: 200px;
+            word-wrap: break-word;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body class="flex justify-center min-h-screen bg-gray-100">
     <div class="w-full p-6 bg-white shadow-lg rounded-lg">
         <div class="flex justify-center items-center mb-6 text-3xl font-bold text-gray-800">
-            <span>Aguardando Sep.</span>
+            <span>Aguardando Separação</span>
             <span class="mx-4 text-gray-500">➡</span>
             <span>Em Separação</span>
             <span class="mx-4 text-gray-500">➡</span>
@@ -39,21 +45,25 @@
             <span class="mx-4 text-gray-500">➡</span>
             <span>Faturamento</span>
             <span class="mx-4 text-gray-500">➡</span>
-            <span>Disponível</span>
+            <span>Disponível p/ coleta</span>
         </div>
         
         <table class="w-full border-collapse">
             <thead>
                 <tr>
-                    <th class="p-6 border text-white bg-blue-500 text-4xl font-bold">Aguardando Sep.<br><span class="text-2xl font-semibold">Total: 5</span></th>
-                    <th class="p-6 border text-white bg-yellow-500 text-4xl font-bold">Em Separação<br><span class="text-2xl font-semibold">Total: 5</span></th>
-                    <th class="p-6 border text-white bg-orange-500 text-4xl font-bold">Cubagem<br><span class="text-2xl font-semibold">Total: 5</span></th>
-                    <th class="p-6 border text-white bg-red-500 text-4xl font-bold">Faturamento<br><span class="text-2xl font-semibold">Total: 5</span></th>
-                    <th class="p-6 border text-white bg-green-500 text-4xl font-bold">Disponível p/ coleta<br><span class="text-2xl font-semibold">Total: 5</span></th>
+                    <th class="p-6 border text-white bg-blue-500 text-4xl font-bold">Aguardando Separação<br><span class="text-2xl font-semibold">Total: 6</span></th>
+                    <th class="p-6 border text-white bg-yellow-500 text-4xl font-bold">Em Separação<br><span class="text-2xl font-semibold">Total: 6</span></th>
+                    <th class="p-6 border text-white bg-orange-500 text-4xl font-bold">Cubagem<br><span class="text-2xl font-semibold">Total: 6</span></th>
+                    <th class="p-6 border text-white bg-red-500 text-4xl font-bold">Faturamento<br><span class="text-2xl font-semibold">Total: 6</span></th>
+                    <th class="p-6 border text-white bg-green-500 text-4xl font-bold">Disponível p/ coleta<br><span class="text-2xl font-semibold">Total: 6</span></th>
                 </tr>
             </thead>
             <tbody id="table-body" class="text-center text-2xl font-semibold"></tbody>
         </table>
+
+        <div class="mt-4 flex justify-center">
+            <span id="current-page" class="px-4 py-2 text-xl font-semibold">Página 1</span>
+        </div>
     </div>
     
     <div class="fixed-bottom-left">Pendências: 5</div>
@@ -63,10 +73,6 @@
     <script>
         const mockData = [
             ["OV-101 - TOTAL FIT", "OV-102 - SELF IT", "OV-103 - SMARTFIT", "OV-104 - SESC", "OV-105 - PANOBIANCO"],
-            ["OV-106 - BODYTECH", "OV-107 - BLUEFIT", "OV-108 - ACADEMIA CONCEPT", "OV-109 - JUST FIT", "OV-110 - PERSONAL FIT"],
-            ["OV-111 - LIFE FITNESS", "OV-112 - EVOLVE", "OV-113 - ENERGY", "OV-114 - BIO RITMO", "OV-115 - ACADEMIA X"],
-            ["OV-116 - FITNESS GYM", "OV-117 - TOP FIT", "OV-118 - WELLNESS CLUB", "OV-119 - VIVAFIT", "OV-120 - HIGH PERFORMANCE"],
-            ["OV-121 - GYM MASTER", "OV-122 - IRON FITNESS", "OV-123 - STRONG GYM", "OV-124 - POWER HOUSE", "OV-125 - XTREME FITNESS"],
             ["OV-126 - FITNESS PRO", "OV-127 - SUPREME GYM", "OV-128 - ELITE FITNESS", "OV-129 - BODYBUILDING", "OV-130 - SMART GYM"],
             ["OV-131 - MUSCLE PRO", "OV-132 - ACTIVE GYM", "OV-133 - MAX FITNESS", "OV-134 - POWERLIFT", "OV-135 - FULL BODY GYM"],
             ["OV-136 - TRAINING ZONE", "OV-137 - VITALITY CLUB", "OV-138 - STRENGTH GYM", "OV-139 - FITZONE", "OV-140 - FLEX FITNESS"],
@@ -75,14 +81,20 @@
         ];
         
         let currentIndex = 0;
+        const rowsPerPage = 5;
+        const totalPages = Math.ceil(mockData.length / rowsPerPage);
         const tableBody = document.getElementById("table-body");
-        
+        const currentPageElement = document.getElementById("current-page");
+
         function updateTable() {
             tableBody.innerHTML = "";
-            for (let i = 0; i < 5; i++) {
+            const startIndex = currentIndex * rowsPerPage;
+            const endIndex = Math.min(startIndex + rowsPerPage, mockData.length);
+
+            for (let i = startIndex; i < endIndex; i++) {
                 const row = document.createElement("tr");
                 row.className = i % 2 === 0 ? "bg-gray-200" : "bg-gray-50";
-                mockData[currentIndex + i].forEach(item => {
+                mockData[i].forEach(item => {
                     const cell = document.createElement("td");
                     cell.className = "p-4 border";
                     cell.textContent = item;
@@ -91,16 +103,25 @@
                 tableBody.appendChild(row);
             }
 
-            currentIndex = (currentIndex + 5) % mockData.length;
+            currentPageElement.textContent = `Página ${currentIndex + 1}`;
         }
-        
+
+        function nextPage() {
+            currentIndex = (currentIndex + 1) % totalPages;
+            updateTable();
+        }
+
+        function autoPagination() {
+            setInterval(nextPage, 4000);
+        }
+
         function updateTime() {
             const currentTime = new Date().toLocaleTimeString();
             document.getElementById("current-time").textContent = currentTime;
         }
 
         updateTable();
-        setInterval(updateTable, 3000);
+        autoPagination();
         setInterval(updateTime, 1000);
     </script>
 </body>
